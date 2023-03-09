@@ -1,46 +1,58 @@
-" tabstop:          Width of tab character
-" softtabstop:      Fine tunes the amount of white space to be added
-" shiftwidth        Determines the amount of whitespace to add in normal mode
-" expandtab:        When this option is enabled, vi will use spaces instead of tabs
-set tabstop     =3
-set softtabstop =3
-set shiftwidth  =3
-set expandtab
+set tabstop=3       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+set shiftwidth=3    " Indents will have a width of 4
+set softtabstop=3   " Sets the number of columns for a TAB
+set expandtab       " Expand TABs to spaces
+set autoindent
+set smarttab
+set backspace=indent,eol,start "makes backspace work like it does in most programs
 set relativenumber
-set backspace=indent,eol,start
-set nu rnu
-set ignorecase " Ingore case when searching
+set guifont=Consolas:h12
 set hlsearch
- 
-nnoremap <F4>  :NERDTreeToggle<CR>
-nnoremap <c-z> <nop>
-noremap <C-S>          :update<CR>
-vnoremap <C-S>         <C-C>:update<CR>
-inoremap <C-S>         <C-O>:update<CR>
-nnoremap <C-p>         :Files<CR>
- 
-" Remap plane focus
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
- 
-call plug#begin('~/.vim/plugged')
- 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdtree'
-Plug 'joshdick/onedark.vim'
-Plug 'jesseleite/vim-agriculture'
-Plug 'morhetz/gruvbox'
-Plug 'psliwka/vim-smoothie'
-Plug 'octol/vim-cpp-enhanced-highlight'
- 
-call plug#end()
+set hidden
 
-if has('termguicolors')
-    set termguicolors
-endif
+" Auto close brackets
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
-colorscheme gruvbox
- 
+" Misc custom
+nnoremap <silent> <C-s> :update<cr>
+
+" Moving between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
+
+" Term specific stuff
+tnoremap <C-n> <C-w>N
+tnoremap <C-e> <C-l>
+
+
+" Tab 
+nnoremap <Tab> :tabnext<cr>
+nnoremap <S-Tab> :tabprev<cr>
+
+" Explorer
+let g:netrw_banner = 0
+
+" Commenting blocks of code.
+augroup commenting_blocks_of_code
+  autocmd!
+  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+  autocmd FileType conf,fstab       let b:comment_leader = '# '
+  autocmd FileType tex              let b:comment_leader = '% '
+  autocmd FileType mail             let b:comment_leader = '> '
+  autocmd FileType vim              let b:comment_leader = '" '
+augroup END
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+colorscheme darkblue
