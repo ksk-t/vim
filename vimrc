@@ -1,3 +1,5 @@
+let mapleader = ','
+
 set tabstop=3       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
@@ -12,6 +14,11 @@ set relativenumber
 set guifont=Consolas:h12
 set hlsearch
 set hidden
+
+" Buffers
+nnoremap bj :ls<cr>:b
+nnoremap bn :enew<cr>:Explore<cr>
+nnoremap bd :bp<cr>:bd #<cr>
 
 " Auto close brackets
 inoremap {<CR> {<CR>}<ESC>O
@@ -34,10 +41,10 @@ tnoremap <C-l> <C-w>l
 tnoremap <C-n> <C-w>N
 tnoremap <C-e> <C-l>
 
-
 " Tab 
 nnoremap <Tab> :tabnext<cr>
 nnoremap <S-Tab> :tabprev<cr>
+nnoremap tn :tabedit<cr>
 
 " Explorer
 let g:netrw_banner = 0
@@ -56,3 +63,4 @@ noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<C
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 colorscheme darkblue
+
