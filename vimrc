@@ -27,7 +27,7 @@ nnoremap <C-s> :update<cr>
 set belloff=all
 
 " File search
-nnoremap <C-p> :call fzf#run(fzf#wrap({'source': 'find . -name "*.cpp" -or -name "*.h"'}))<cr>
+nnoremap <C-p> :Files<cr>
 nnoremap <C-f> :Rg 
 
 " Moving between splits
@@ -83,7 +83,7 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 
 colorscheme desertink
 
-"Debuffer stuff
+"Debugger stuff
 packadd termdebug
 let g:termdebugger = "aarch64-linux-gdb"
 let g:termdebug_popup = 0
@@ -95,6 +95,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' }
 Plug 'toupeira/vim-desertink'
+Plug 'jesseleite/vim-agriculture'
 call plug#end()
 
 
