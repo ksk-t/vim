@@ -14,6 +14,7 @@ set relativenumber
 set guifont=Consolas:h12
 set hlsearch
 set hidden
+set showcmd
 
 " Buffers
 nnoremap <leader>b :Buffers<cr>
