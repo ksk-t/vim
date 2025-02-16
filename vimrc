@@ -14,6 +14,7 @@ set relativenumber
 set guifont=Consolas:h12
 set hlsearch
 set hidden
+set number
 set showcmd
 
 " Buffers
